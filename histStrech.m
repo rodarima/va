@@ -3,14 +3,16 @@
 
 function new_image = histStrech(img, min_n, max_n)
 	[my, mx] = size(img);
+	min_p = double(min(min(img)));
+	max_p = double(max(max(img)));
 	f = uint8(zeros(my, mx));
-	delta = double(max_n - min_n);
+	delta_n = double(max_n - min_n);
+	delta_p = double(max_p - min_p);
 	for x = 1:mx,
 		for y = 1:my,
 			g = double(img(y, x));
-			a = (delta * g);
-			b = a / 255.0;
-			f(y, x) = uint8(min_n + b);
+			t = (delta_n * (g - min_p)) / delta_p;
+			f(y, x) = uint8(min_n + t);
 		end;
 	end;
 	new_image = f;
