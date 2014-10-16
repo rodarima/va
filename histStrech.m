@@ -8,12 +8,19 @@ function new_image = histStrech(img, min_n, max_n)
 	f = uint8(zeros(my, mx));
 	delta_n = double(max_n - min_n);
 	delta_p = double(max_p - min_p);
-	for x = 1:mx,
-		for y = 1:my,
-			g = double(img(y, x));
-			t = (delta_n * (g - min_p)) / delta_p;
-			f(y, x) = uint8(min_n + t);
-		end;
-	end;
+	
+%	Para optimizar la velocidad es conveniente leer:
+%	https://www.gnu.org/software/octave/doc/interpreter/Vectorization-and-Faster-Code-Execution.html
+%
+%	for x = 1:mx,
+%		for y = 1:my,
+%			g = double(img(y, x));
+%			t = (delta_n * (g - min_p)) / delta_p;
+%			f(y, x) = uint8(min_n + t);
+%		end;
+%	end;
+
+	f = uint8((delta_n * (double(img) - min_p)) / delta_p);
+
 	new_image = f;
 endfunction
