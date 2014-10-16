@@ -5,7 +5,6 @@ function new_image = histStrech(img, min_n, max_n)
 	[my, mx] = size(img);
 	min_p = double(min(min(img)));
 	max_p = double(max(max(img)));
-	f = uint8(zeros(my, mx));
 	delta_n = double(max_n - min_n);
 	delta_p = double(max_p - min_p);
 	
