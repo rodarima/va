@@ -1,0 +1,22 @@
+Los bucles producen un gran retardo al calcular operaciones sobre cada elemento
+de una matriz.
+
+Al probar histStrech con bucles anidados:
+
+	octave:24> tic(); histStrech2(img(:,:,1), 0, 255); toc();
+	Elapsed time is 2.8153 seconds.
+
+Con multiplicación de matrices:
+
+	octave:25> tic(); histStrech(img(:,:,1), 0, 255); toc();
+	Elapsed time is 0.00535393 seconds.
+
+Al probar zoom al vecino mas cercano, con bucles:
+
+	octave:36> tic(); neighbor_zoom2(img(:,:,1), 2); toc();
+	Elapsed time is 9.66047 seconds.
+
+Con operaciones de matrices:
+
+	octave:37> tic(); neighbor_zoom(img(:,:,1), 2); toc();
+	Elapsed time is 0.00885105 seconds.
