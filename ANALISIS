@@ -20,3 +20,14 @@ Con operaciones de matrices:
 
 	octave:37> tic(); neighbor_zoom(img(:,:,1), 2); toc();
 	Elapsed time is 0.00885105 seconds.
+
+Zoom bilineal con bucles:
+
+	octave:156> tic(); A = bilinear_zoom(img(:,:,1), 2); toc();
+	Elapsed time is 32.3443 seconds.
+	octave:157> size(img(:,:,1))
+	ans =
+
+	   297   275
+
+Increíblemente lento.
