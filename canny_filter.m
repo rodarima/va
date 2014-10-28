@@ -20,6 +20,12 @@ function new_image = canny_filter(P, sigma, tmin, tmax)
 	fflush(stdout);
 	pause(3);
 
+	T = threshold(histStrech(G, 0, 255), tmin, tmax);
+	imshow(histStrech(T, 0, 255));
+	printf('Gradiente de Sobel con límites\n');
+	fflush(stdout);
+	pause(3);
+
 	S = supression(G, A, tmin, tmax);
 
 	imshow(histStrech(S, 0, 255));
