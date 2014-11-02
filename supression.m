@@ -15,35 +15,34 @@ function [_R] = supression(_GRA, _ANG, tmin, tmax)
 	ANG = [repmat(ANG(:,1), 1, r), ANG, repmat(ANG(:,m), 1, r)];
 	ANG = double(ANG);
 
+	[pi, pj] = find(_GRA > 0);
 
-	for x = 1:m,
-		for y = 1:n,
-			if _GRA(y, x) == 0
-				continue;
-			end;
-			switch (ANG(y+r, x+r))
-				case 0
-					v = [1 0];
-				case 45
-					v = [1 -1];
-				case 90
-					v = [0 -1];
-				case 135
-					v = [-1 -1];
-				otherwise
-					printf('ERROR\n');
-			end;
-			w = -v;
-			v += [x y];
-			w += [x y];
-			vij = GRA(v(2)+r, v(1)+r);
-			wij = GRA(w(2)+r, w(1)+r);
-			pij = GRA(y+r, x+r);
-			if((wij <= pij) && (pij > vij))
-				R(y, x) = pij;
+	for i = 1:length(pi),
+		x = pj(i);
+		y = pi(i);
+
+		switch (ANG(y+r, x+r))
+			case 0
+				v = [1 0];
+			case 45
+				v = [1 -1];
+			case 90
+				v = [0 -1];
+			case 135
+				v = [-1 -1];
+			otherwise
+				printf('ERROR\n');
+		end;
+		w = -v;
+		v += [x y];
+		w += [x y];
+		vij = GRA(v(2)+r, v(1)+r);
+		wij = GRA(w(2)+r, w(1)+r);
+		pij = GRA(y+r, x+r);
+		if((wij <= pij) && (pij > vij))
+			R(y, x) = pij;
 %			else
 %				R(y, x) = 0;
-			end;
 		end;
 	end;
 
