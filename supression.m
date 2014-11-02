@@ -6,8 +6,6 @@ function [_R] = supression(_GRA, _ANG, tmin, tmax)
 	R = zeros(n, m);
 %	R = -ones(n, m);
 	
-	_GRA = threshold(_GRA, tmin, tmax);
-
 	% Padding
 	GRA = [repmat(_GRA(1,:), r, 1); _GRA; repmat(_GRA(n,:), r, 1)];
 	GRA = [repmat(GRA(:,1), 1, r), GRA, repmat(GRA(:,m), 1, r)];
@@ -42,7 +40,7 @@ function [_R] = supression(_GRA, _ANG, tmin, tmax)
 			wij = GRA(w(2)+r, w(1)+r);
 			pij = GRA(y+r, x+r);
 			if((wij <= pij) && (pij > vij))
-				R(y, x) = 1;
+				R(y, x) = pij;
 %			else
 %				R(y, x) = 0;
 			end;
